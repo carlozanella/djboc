@@ -1,5 +1,5 @@
 # djboc
-Uses Selenium to collects Risk and Compliance documents from Dow Jones' risk database and prepare reports for Bank of China.
+Uses Selenium to collect Risk and Compliance documents from Dow Jones' risk database and prepare reports for Bank of China.
 ## Installation
 1. First install the dependencies (`pipenv install --skip-lock`) and make sure a `pdf`folder exists.
 2. Download the chromedriver and put it in the directory.
