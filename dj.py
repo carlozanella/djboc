@@ -1,5 +1,5 @@
 import time
-import os
+import os,platform
 import shutil
 import pathlib
 import json
@@ -11,6 +11,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+
+CD = './chromedriver.exe' if platform.system() == 'Windows' else './chromedriver'
 
 
 def load_credentials(fn):
@@ -42,6 +44,8 @@ def parse_results():
         return r
 
     for row in rows:
+        if not row.is_displayed():
+            break
         # Parse rows
         cells = row.find_elements(By.TAG_NAME,"td");
         rowtext = ([cell.text for cell in cells])
@@ -105,7 +109,7 @@ dldir = tempdir.name
 p = {"download.default_directory": dldir, "safebrowsing.enabled":"false"}
 print(p)
 op.add_experimental_option("prefs", p)
-driver = webdriver.Chrome('./chromedriver',chrome_options=op)
+driver = webdriver.Chrome(CD,chrome_options=op)
 
 print("LOGIN")
 driver.get("https://djlogin.dowjones.com/login.asp?productname=rnc")
