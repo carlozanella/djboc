@@ -114,6 +114,14 @@ driver = webdriver.Chrome(CD,chrome_options=op)
 print("LOGIN")
 driver.get("https://djlogin.dowjones.com/login.asp?productname=rnc")
 time.sleep(4)
+
+try:
+    driver.find_element(By.ID,"okBtn").click()
+    print("INTERRUPTED: Need to confirm something...")
+    time.sleep(4)
+except:
+    pass
+
 email = driver.find_element(By.ID,"email")
 email.send_keys(EMAIL)
 pw = driver.find_element(By.ID,"password")
